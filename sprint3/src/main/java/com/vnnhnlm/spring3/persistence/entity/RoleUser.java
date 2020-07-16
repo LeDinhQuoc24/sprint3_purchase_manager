@@ -3,19 +3,25 @@ package com.vnnhnlm.spring3.persistence.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name="role_user")
 public class RoleUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_role")
+    @Column(name = "role_user_id")
     private Integer id;
-    @Column(name = "role_name")
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Roles role;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
 
     @Override
     public String toString() {
-        return "role_user{" +
+        return "RoleUser{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", role=" + role +
+                ", user=" + user +
                 '}';
     }
 
@@ -27,11 +33,19 @@ public class RoleUser {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Roles getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

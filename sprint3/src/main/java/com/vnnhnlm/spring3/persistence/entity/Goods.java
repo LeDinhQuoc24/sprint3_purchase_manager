@@ -1,9 +1,12 @@
 package com.vnnhnlm.spring3.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="goods")
 public class Goods {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,16 +18,18 @@ public class Goods {
     private Integer price;
     @Column(name = "quantity")
     private Integer quantity;
-    @Column(name = "category")
-    private String category;
     @Column(name = "trade_mask")
     private String tradeMask;
     @Column(name = "sale_off")
     private Integer saleOff;
     @Column(name = "delete_flag")
     private Integer deleteFlag;
-    @OneToMany(targetEntity = Bills.class)
+    @JsonBackReference(value="good")
+    @OneToMany(mappedBy = "good")
     private List<Bills> bills;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @Override
     public String toString() {
@@ -33,11 +38,11 @@ public class Goods {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
-                ", category='" + category + '\'' +
                 ", tradeMask='" + tradeMask + '\'' +
                 ", saleOff=" + saleOff +
                 ", deleteFlag=" + deleteFlag +
                 ", bills=" + bills +
+                ", category=" + category +
                 '}';
     }
 
@@ -73,14 +78,6 @@ public class Goods {
         this.quantity = quantity;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public String getTradeMask() {
         return tradeMask;
     }
@@ -111,5 +108,13 @@ public class Goods {
 
     public void setBills(List<Bills> bills) {
         this.bills = bills;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

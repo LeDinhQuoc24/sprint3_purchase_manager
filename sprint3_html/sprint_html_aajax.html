@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Basic Ajax Demo</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.pack.js"></script>
+    <script>
+        $(document).ready(function () {
+            jQuery("#btn").click(function(){
+                $.ajax({
+                    url: '/localhost8080/bills/',
+                    type: 'GET',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(result){
+                        console.log(result);
+                    },
+                    fail: function(error) {
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="demo-ajax"></div>
+<button id="btn">View more</button>
+<div></div>
+</body>
+</html>

@@ -1,9 +1,12 @@
 package com.vnnhnlm.spring3.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="users")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,18 +14,20 @@ public class Users {
     private Integer id;
     @Column(name = "user_name")
     private String name;
-    @Column(name = "fullName")
+    @Column(name = "fullname")
     private String fullName;
     @Column(name = "password")
     private String password;
     @Column(name = "delete_flag")
     private Integer deleteFlag;
-    @ManyToOne
-    @JoinColumn(name = "id_role")
-    private RoleUser roleUser;
 
-    @OneToMany(targetEntity = Bills.class)
+    @JsonBackReference(value="user")
+    @OneToMany(mappedBy = "user")
     private List<Bills> bills;
+
+    @JsonBackReference(value="user")
+    @OneToMany(mappedBy = "user")
+    private List<RoleUser> roleUsers;
 
     @Override
     public String toString() {
@@ -32,8 +37,8 @@ public class Users {
                 ", fullName='" + fullName + '\'' +
                 ", password='" + password + '\'' +
                 ", deleteFlag=" + deleteFlag +
-                ", roleUser=" + roleUser +
                 ", bills=" + bills +
+                ", roleUsers=" + roleUsers +
                 '}';
     }
 
@@ -77,19 +82,19 @@ public class Users {
         this.deleteFlag = deleteFlag;
     }
 
-    public RoleUser getRoleUser() {
-        return roleUser;
-    }
-
-    public void setRoleUser(RoleUser roleUser) {
-        this.roleUser = roleUser;
-    }
-
     public List<Bills> getBills() {
         return bills;
     }
 
     public void setBills(List<Bills> bills) {
         this.bills = bills;
+    }
+
+    public List<RoleUser> getRoleUsers() {
+        return roleUsers;
+    }
+
+    public void setRoleUsers(List<RoleUser> roleUsers) {
+        this.roleUsers = roleUsers;
     }
 }
