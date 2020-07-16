@@ -1,1 +1,0 @@
-SELECT * FROM purchase_manager.role_user;
