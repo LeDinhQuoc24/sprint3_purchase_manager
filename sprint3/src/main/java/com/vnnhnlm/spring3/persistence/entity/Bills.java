@@ -1,5 +1,7 @@
 package com.vnnhnlm.spring3.persistence.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 

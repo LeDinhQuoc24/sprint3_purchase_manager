@@ -33,4 +33,14 @@ public class BillsServiceImpl implements BillsService {
         billsRepository.save(bill);
     }
 
+    @Override
+    public List<Bills> searchAllByName(String name) {
+        return billsRepository.searchAllByName(name);
+    }
+
+    @Override
+    public List<Bills> searchAll(Integer billType, Integer quantity, String nameUser, String nameGood) {
+        return billsRepository.searchAll(billType, quantity, nameUser, nameGood);
+    }
+
 }

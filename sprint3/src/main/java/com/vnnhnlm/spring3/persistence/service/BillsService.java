@@ -13,4 +13,8 @@ public interface BillsService {
 
     void remove(Integer id);
 
+    List<Bills> searchAllByName(String name);
+
+    List<Bills> searchAll(Integer billType,Integer quantity,String nameUser,String nameGood);
+
 }
