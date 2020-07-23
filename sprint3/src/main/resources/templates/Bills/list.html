@@ -11,62 +11,32 @@
         }
     </style>
     <script>
-        // $.ajax({
-        //     url: '/billsList',
-        //     type: 'GET',
-        //     contentType: "application/json; charset=utf-8",
-        //     dataType: "json",
-        //     success: function (result) {
-        //         console.log(result);
-        //         result.forEach(bill => {
-        //             //Xử lý phần thêm các phần tử vào bảng ở đây
-        //             $('#main_list').append("<tr>"
-        //                 + "<th scope=\"row\">" + bill.id + "</th>"
-        //                 + "<td>" + bill.createDate + "</td>"
-        //                 + "<td>" + bill.billType + "</td>"
-        //                 + "<td>" + bill.quantity + "</td>"
-        //                 + "<td>" + bill.good.name + "</td>"
-        //                 + "<td>" + bill.user.name + "</td>"
-        //                 + "<td>" + "Edit" + "</td>"
-        //                 + "<td>" + "Delete" + "</td>"
-        //                 + "</tr>")
-        //         });
-        //     },
-        //     fail: function (error) {
-        //     }
-        // });
-        // $(document).ready(function() {
-        //     $('#search').click(function(e) {
-        //         let name=$('#search_name').val();
-        //         let htmlE;
-        //         $.ajax({
-        //             url: '/bills?name=' + name,
-        //             type: 'GET',
-        //             contentType: "application/json; charset=utf-8",
-        //             dataType: "json",
-        //             success: function (result) {
-        //                 console.log(result);
-        //                 result.forEach(bill => {
-        //                     //Xử lý phần thêm các phần tử vào bảng ở đây
-        //                     htmlE+=("<tr>"
-        //                         + "<th scope=\"row\">" + bill.id + "</th>"
-        //                         + "<td>" + bill.createDate + "</td>"
-        //                         + "<td>" + bill.billType + "</td>"
-        //                         + "<td>" + bill.quantity + "</td>"
-        //                         + "<td>" + bill.good.name + "</td>"
-        //                         + "<td>" + bill.user.name + "</td>"
-        //                         + "<td>" + "Edit" + "</td>"
-        //                         + "<td>" + "Delete" + "</td>"
-        //                         + "</tr>")
-        //                 });
-        //                 $('#main_list').html(htmlE);
-        //             },
-        //             fail: function (error) {
-        //             }
-        //         });
-        //
-        //     });
-        // });
+        $.ajax({
+            url: '/billsList',
+            type: 'GET',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                result.forEach(bill => {
+                    //Xử lý phần thêm các phần tử vào bảng ở đây
+                    $('#main_list').append("<tr>"
+                        + "<th scope=\"row\">" + bill.id + "</th>"
+                        + "<td>" + bill.createDate + "</td>"
+                        + "<td>" + bill.billType + "</td>"
+                        + "<td>" + bill.quantity + "</td>"
+                        + "<td>" + bill.good.name + "</td>"
+                        + "<td>" +"<img style='width: 50px;height: 50px' src='" +bill.good.imageLink+"'>" + "</td>"
+                        + "<td>" + bill.user.name + "</td>"
+                        + "<td>" + "Edit" + "</td>"
+                        + "<td>" + "Delete" + "</td>"
+                        + "</tr>")
+                });
+            },
+            fail: function (error) {
+            }
+        });
+
         $(document).ready(function() {
             $('#search').click(function(e) {
                 let type=$('#search_type').val();
@@ -90,6 +60,7 @@
                                 + "<td>" + bill.billType + "</td>"
                                 + "<td>" + bill.quantity + "</td>"
                                 + "<td>" + bill.good.name + "</td>"
+                                + "<td>" +"<img style='width: 50px;height: 50px' src='" +bill.good.imageLink+"'>" + "</td>"
                                 + "<td>" + bill.user.name + "</td>"
                                 + "<td>" + "Edit" + "</td>"
                                 + "<td>" + "Delete" + "</td>"
@@ -107,13 +78,13 @@
 </head>
 <body>
 <div class="container">
-    <button><a href="/createBill">Create Bill</a></button>
-    <div class="col-md-6">
+    <button><a style="text-decoration: none;color: red" href="/createBill">Create Bill</a></button>
+    <div class="col-md-10">
         <div class="input-group">
-            <input type="text" id="search_type" class="form-control" placeholder="Search for...1">
-            <input type="text" id="search_quantity" class="form-control" placeholder="Search for...2">
-            <input type="text" id="search_nameUser" class="form-control" placeholder="Search for...3">
-            <input type="text" id="search_nameGood" class="form-control" placeholder="Search for...4">
+            <input type="text" id="search_type" class="form-control" placeholder="Search for type">
+            <input type="text" id="search_quantity" class="form-control" placeholder="Search for quantity">
+            <input type="text" id="search_nameUser" class="form-control" placeholder="Search for userName">
+            <input type="text" id="search_nameGood" class="form-control" placeholder="Search for goodName">
             <span class="input-group-btn">
           <button id="search" class="btn btn-default" type="submit">Go!</button>
         </span>
@@ -128,7 +99,8 @@
             <th scope="col">CreateDate</th>
             <th scope="col">BillType</th>
             <th scope="col">Quantity</th>
-            <th scope="col">GoodName</th>
+            <th scope="col">GoodsName</th>
+            <th scope="col">GoodsImage</th>
             <th scope="col">UserName</th>
             <th scope="col" colspan="2"></th>
         </tr>

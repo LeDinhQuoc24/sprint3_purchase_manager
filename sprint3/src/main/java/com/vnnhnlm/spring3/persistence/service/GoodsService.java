@@ -5,7 +5,7 @@ import com.vnnhnlm.spring3.persistence.entity.Goods;
 
 import java.util.List;
 
-public interface GoodsRepository {
+public interface GoodsService {
     List<Goods> findAllByDeleteFlagIsNull();
 
     Goods findAllByDeleteFlagIsNullAndIdIs(Integer id);
@@ -13,4 +13,6 @@ public interface GoodsRepository {
     void save(Goods good);
 
     void remove(Integer id);
+
+//    List<Goods> searchAll(String name,Integer price,Integer quantity,Integer );
 }

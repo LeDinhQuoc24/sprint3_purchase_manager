@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.pack.js"></script>
     <script>
         $(document).ready(
             function() {
@@ -18,10 +21,10 @@
 
                     // PREPARE FORM DATA
                     var formData = {
-                        bookId : $("#bookId").val(),
+                        bookId : $("#createDay").val(),
                         bookName : $("#bookName").val(),
                         author : $("#author").val()
-                    }
+                    };
 
                     // DO POST
                     $.ajax({
@@ -55,22 +58,33 @@
 <body>
 <div id="postResultDiv" align="center"></div>
 <div class="container">
-    <h2>Stacked form</h2>
+    <h2>Create New Bill</h2>
+
     <form id="bookForm">
         <div class="form-group">
-            <label for="bookId">Book ID:</label> <input type="text"
-                                                        class="form-control" id="bookId" placeholder="Enter Book Id"
-                                                        name="bookId">
+            <label for="createDay">Create Day:</label> <input type="text"
+                                                        class="form-control" id="createDay" placeholder="Enter CreateDay"
+                                                        name="createDay">
         </div>
         <div class="form-group">
-            <label for="bookName">Book Name:</label> <input type="text"
-                                                            class="form-control" id="bookName" placeholder="Enter Book Name"
-                                                            name="bookName">
+            <label for="billType">Bill Type:</label> <input type="text"
+                                                            class="form-control" id="billType" placeholder="Enter BillType"
+                                                            name="billType">
         </div>
         <div class="form-group">
-            <label for="author">Author :</label> <input type="text"
-                                                        class="form-control" id="author" placeholder="Enter Author name"
-                                                        name="author">
+            <label for="quantity">Quantity:</label> <input type="text"
+                                                        class="form-control" id="quantity" placeholder="Enter Quantity"
+                                                        name="quantity">
+        </div>
+        <div class="form-group">
+            <label for="goodsName">Goods Name:</label> <input type="text"
+                                                           class="form-control" id="goodsName" placeholder="Goods Name"
+                                                           name="goodsName">
+        </div>
+        <div class="form-group">
+            <label for="useName">UseName:</label> <input type="text"
+                                                           class="form-control" id="useName" placeholder="Enter UseName"
+                                                           name="useName">
         </div>
         <div class="form-group form-check">
             <label class="form-check-label"> <input

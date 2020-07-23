@@ -24,7 +24,9 @@ public class Goods {
     private Integer saleOff;
     @Column(name = "delete_flag")
     private Integer deleteFlag;
-    @JsonBackReference(value="good")
+    @Column(name = "image_link")
+    private String imageLink;
+    @JsonBackReference(value = "good")
     @OneToMany(mappedBy = "good")
     private List<Bills> bills;
     @ManyToOne
@@ -41,6 +43,7 @@ public class Goods {
                 ", tradeMask='" + tradeMask + '\'' +
                 ", saleOff=" + saleOff +
                 ", deleteFlag=" + deleteFlag +
+                ", imageLink='" + imageLink + '\'' +
                 ", bills=" + bills +
                 ", category=" + category +
                 '}';
@@ -100,6 +103,14 @@ public class Goods {
 
     public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public List<Bills> getBills() {
